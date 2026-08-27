@@ -168,3 +168,13 @@ InkNest usa `base: "./"` y el `index.html` referencia `./src/main.tsx` de forma 
 ### Si Firebase está configurado pero no podés entrar
 
 En Firebase Console verificá Authentication → Sign-in method y activá Email/Password y Google. Después verificá Firestore y Storage y publicá las reglas incluidas en `firebase/firestore.rules` y `firebase/storage.rules`.
+
+## Solución para GitHub Pages: error MIME `application/octet-stream`
+
+Si el navegador muestra `Failed to load module script` y señala `src/main.tsx` con MIME `application/octet-stream`, GitHub Pages está sirviendo el código fuente directamente en lugar del contenido compilado de `dist/`. Un archivo `.tsx` no debe ser ejecutado directamente por el navegador.
+
+InkNest ya está configurado para corregir esto: el workflow `.github/workflows/deploy.yml` compila con Vite y publica exclusivamente `dist/`. Además, `vite.config.ts` detecta automáticamente el nombre del repositorio durante GitHub Actions y usa la base correcta para una página de proyecto, y el favicon se genera en `dist/favicon.svg`.
+
+En GitHub, ve a **Settings → Pages → Build and deployment → Source** y selecciona **GitHub Actions**. No selecciones **Deploy from a branch** apuntando a la raíz del repositorio. Después ejecuta el workflow `Deploy InkNest to GitHub Pages` o realiza un push a `main`.
+
+Si tu URL es `https://ineocases.github.io/IneoNotes/`, el build detectará `IneoNotes` automáticamente; no hace falta cambiar manualmente el `base`.
