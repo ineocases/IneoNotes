@@ -1,0 +1,1 @@
+export function MobileNav(){return <div className="fixed bottom-0 left-0 right-0 z-40 border-t bg-white/95 p-2 md:hidden dark:border-white/10 dark:bg-[#15171d]/95"><div className="text-center text-xs opacity-60">InkNest · navegación móvil</div></div>;}

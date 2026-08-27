@@ -1,0 +1,1 @@
+export const isDeleted = (deletedAt?: number) => Boolean(deletedAt);

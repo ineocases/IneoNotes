@@ -1,0 +1,1 @@
+import { useEffect } from "react"; import { debounce } from "../utils/debounce"; export function useAutosave<T>(value:T, save:(v:T)=>void, delay=700){useEffect(()=>{const fn=debounce(save as (...args:never[])=>void,delay); fn(value); return ()=>undefined;},[value,save,delay]);}

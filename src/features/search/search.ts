@@ -1,0 +1,1 @@
+import type { Notebook } from "../../types/models"; export const searchNotebooks = (items: Notebook[], query: string) => items.filter(n => n.name.toLowerCase().includes(query.toLowerCase()));

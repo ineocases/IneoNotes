@@ -1,0 +1,1 @@
+export { localService as pageService } from "../../services/localService";

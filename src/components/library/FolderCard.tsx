@@ -1,0 +1,1 @@
+export function FolderCard({name}:{name:string}){return <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#191b22]">📁 {name}</div>;}

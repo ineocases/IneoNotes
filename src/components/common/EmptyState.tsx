@@ -1,0 +1,1 @@
+import type { ReactNode } from "react"; export function EmptyState({title, children}:{title:string;children?:ReactNode}){return <div className="rounded-3xl border border-dashed p-10 text-center"><h2 className="font-semibold">{title}</h2>{children}</div>;}

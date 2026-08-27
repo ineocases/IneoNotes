@@ -1,0 +1,1 @@
+export function TopBar({title}:{title:string}){return <header className="border-b px-5 py-4"><h1 className="font-semibold">{title}</h1></header>;}

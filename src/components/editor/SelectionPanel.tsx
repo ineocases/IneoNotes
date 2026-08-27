@@ -1,0 +1,1 @@
+export function SelectionPanel(){return <aside className="hidden w-56 border-l p-4 xl:block"><p className="text-xs opacity-50">Propiedades</p><p className="mt-2 text-sm opacity-60">Seleccioná un elemento para editarlo.</p></aside>;}

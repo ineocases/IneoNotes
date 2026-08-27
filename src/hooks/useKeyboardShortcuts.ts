@@ -1,0 +1,1 @@
+import { useEffect } from "react"; export function useKeyboardShortcuts(){useEffect(()=>{const f=(e:KeyboardEvent)=>{if(e.key==="Escape") document.activeElement instanceof HTMLElement && document.activeElement.blur();};window.addEventListener("keydown",f);return()=>window.removeEventListener("keydown",f);},[]);}
