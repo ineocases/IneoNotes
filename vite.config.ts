@@ -1,11 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// GitHub Pages project sites are served under /IneoNotes/.
-// Override with VITE_BASE_PATH for another deployment target.
-const base = process.env.VITE_BASE_PATH || "/IneoNotes/";
-
+// Relative asset URLs work for local Vite, GitHub Pages project sites,
+// and custom domains without hard-coding a repository name.
 export default defineConfig({
   plugins: [react()],
-  base,
+  base: "./",
 });
