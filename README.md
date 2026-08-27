@@ -169,12 +169,12 @@ InkNest usa `base: "./"` y el `index.html` referencia `./src/main.tsx` de forma 
 
 En Firebase Console verificá Authentication → Sign-in method y activá Email/Password y Google. Después verificá Firestore y Storage y publicá las reglas incluidas en `firebase/firestore.rules` y `firebase/storage.rules`.
 
-## Solución para GitHub Pages: error MIME `application/octet-stream`
+## GitHub Pages: corrección del error `application/octet-stream`
 
-Si el navegador muestra `Failed to load module script` y señala `src/main.tsx` con MIME `application/octet-stream`, GitHub Pages está sirviendo el código fuente directamente en lugar del contenido compilado de `dist/`. Un archivo `.tsx` no debe ser ejecutado directamente por el navegador.
+Si el navegador muestra `GET .../src/main.tsx 404` o `Expected a JavaScript-or-Wasm module script`, GitHub Pages está publicando el código fuente directamente en lugar del resultado de Vite. **No es un problema de Firebase.**
 
-InkNest ya está configurado para corregir esto: el workflow `.github/workflows/deploy.yml` compila con Vite y publica exclusivamente `dist/`. Además, `vite.config.ts` detecta automáticamente el nombre del repositorio durante GitHub Actions y usa la base correcta para una página de proyecto, y el favicon se genera en `dist/favicon.svg`.
+En GitHub entra a **Settings → Pages → Build and deployment → Source → GitHub Actions**. No selecciones `Deploy from a branch` ni publiques la raíz del repositorio.
 
-En GitHub, ve a **Settings → Pages → Build and deployment → Source** y selecciona **GitHub Actions**. No selecciones **Deploy from a branch** apuntando a la raíz del repositorio. Después ejecuta el workflow `Deploy InkNest to GitHub Pages` o realiza un push a `main`.
+El workflow incluido construye la aplicación y publica exclusivamente `dist/`. La URL esperada para este repositorio es `https://ineocases.github.io/IneoNotes/`.
 
-Si tu URL es `https://ineocases.github.io/IneoNotes/`, el build detectará `IneoNotes` automáticamente; no hace falta cambiar manualmente el `base`.
+El favicon usa una ruta relativa simple (`favicon.svg`), por lo que no queda el literal `%BASE_URL%` cuando el HTML se abre fuera de Vite.

@@ -20,18 +20,19 @@ import { getAnalytics, isSupported, type Analytics } from "firebase/analytics";
 const env = import.meta.env;
 
 /**
- * InkNest reads Firebase from Vite environment variables. The checked-in
- * .env.example contains placeholders; a local .env may contain a project's
- * public Web SDK configuration.
+ * Firebase Web SDK configuration is client-side configuration, not a server
+ * secret. InkNest prefers Vite environment variables, but includes the
+ * provided project's public Web SDK values as a fallback so a GitHub Pages
+ * build also works when repository Actions secrets have not been created yet.
  */
 const firebaseConfig = {
-  apiKey: env.VITE_FIREBASE_API_KEY,
-  authDomain: env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: env.VITE_FIREBASE_APP_ID,
-  measurementId: env.VITE_FIREBASE_MEASUREMENT_ID,
+  apiKey: env.VITE_FIREBASE_API_KEY || "AIzaSyBilkb1oLOaFwiM3LnYU3njrKLNjZWggp8",
+  authDomain: env.VITE_FIREBASE_AUTH_DOMAIN || "ineonotees.firebaseapp.com",
+  projectId: env.VITE_FIREBASE_PROJECT_ID || "ineonotees",
+  storageBucket: env.VITE_FIREBASE_STORAGE_BUCKET || "ineonotees.firebasestorage.app",
+  messagingSenderId: env.VITE_FIREBASE_MESSAGING_SENDER_ID || "22532007738",
+  appId: env.VITE_FIREBASE_APP_ID || "1:22532007738:web:9297e6ff345c4151675203",
+  measurementId: env.VITE_FIREBASE_MEASUREMENT_ID || "G-B31KHX33SG",
 };
 
 export const isFirebaseConfigured = Object.values(firebaseConfig)
