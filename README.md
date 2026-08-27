@@ -155,3 +155,16 @@ Se utilizan botones con `aria-label`, foco visible, contraste, controles nativos
 ## Licencia
 
 MIT.
+## Firebase de InkNest ya preparado
+
+El paquete entregado incluye un `.env` local con la configuración Web de Firebase proporcionada para el proyecto `ineonotees`. Esa configuración no contiene una clave privada: la API key Web de Firebase es un identificador público del cliente y la seguridad real debe mantenerse mediante Authentication, Firestore Rules y Storage Rules.
+
+Si vas a publicar el proyecto en un repositorio público, podés borrar el `.env` local y cargar los mismos valores como Secrets/Variables de GitHub Actions (`VITE_FIREBASE_*`). El archivo `.gitignore` mantiene `.env` fuera de commits accidentales.
+
+### Error de `main.tsx 404`
+
+InkNest usa `base: "./"` y el `index.html` referencia `./src/main.tsx` de forma relativa. Esto evita el 404 que aparece cuando el `index.html` se sirve desde un subdirectorio o mediante servidores estáticos sencillos. Para desarrollo se recomienda `npm run dev` en la raíz del proyecto, no abrir `index.html` con `file://`.
+
+### Si Firebase está configurado pero no podés entrar
+
+En Firebase Console verificá Authentication → Sign-in method y activá Email/Password y Google. Después verificá Firestore y Storage y publicá las reglas incluidas en `firebase/firestore.rules` y `firebase/storage.rules`.

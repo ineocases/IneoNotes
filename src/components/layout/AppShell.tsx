@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { BookOpen, Folder, Home, Moon, Settings, Sun, Trash2, UserCircle, Search } from "lucide-react";
 import { useAppStore } from "../../stores/useAppStore";
 import { useOnline } from "../../hooks/useOnline";
 
-export function AppShell() {
+export function AppShell({ children }: { children?: ReactNode }) {
   const darkMode = useAppStore((s) => s.darkMode);
   const toggleTheme = useAppStore((s) => s.toggleTheme);
   const online = useOnline();
@@ -50,7 +50,7 @@ export function AppShell() {
           </button>
         </div>
       </aside>
-      <main className="md:pl-64"><Outlet /></main>
+      <main className="md:pl-64">{children ?? <Outlet />}</main>
     </div>
   );
 }
